@@ -1,0 +1,53 @@
+@startuml
+
+title __TD Héritage__\n
+
+  namespace TD {
+    class Directory {
+        ~ listOfElement : LinkedList<ElementFileSystem>
+        + Directory()
+        + addElementFileSystem()
+        + getSize()
+        + toString()
+    }
+  }
+  
+
+  namespace TD  {
+    abstract class ElementFileSystem {
+        # name : String
+        + ElementFileSystem()
+        + getPath()
+        {abstract} + getSize()
+        + setParentDirectory()
+    }
+  }
+  
+
+  namespace TD  {
+    class File {
+        # size : int
+        + File()
+        + getSize()
+        + toString()
+    }
+  }
+  
+
+    class Main {
+        {static} + main()
+    }
+
+
+  TD.Directory -up-|> TD.ElementFileSystem
+  TD.ElementFileSystem o-- TD.Directory : parentDirectory
+  TD.File -up-|> TD.ElementFileSystem
+
+
+right footer
+
+
+Antoine Tauvel ENSEA
+endfooter
+
+@enduml
